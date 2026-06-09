@@ -145,7 +145,11 @@ body{padding-top:var(--safe-t)}
 .er-fill{height:100%;border-radius:1px;transition:width .9s cubic-bezier(.4,0,.2,1)}
 .er-inp{background:var(--l2);border:1.5px solid var(--l4);border-radius:10px;color:var(--t1);font-size:13px;padding:8px;width:100%;outline:none;text-align:right;font-family:var(--fm);-webkit-appearance:none;transition:border-color .2s}
 .er-inp:focus{border-color:rgba(201,168,76,.35)}
-/* SAVINGS ROW special - same as er but green */
+/* STICKY SAVE BAR */
+.sticky-save{position:fixed;bottom:var(--nav-h);left:0;right:0;z-index:190;padding:10px 12px;background:linear-gradient(to top,rgba(1,3,9,.98) 60%,transparent);pointer-events:none}
+.sticky-save button{pointer-events:all;width:100%;background:linear-gradient(135deg,#8b6914,#c9a84c,#e8c96a);border:none;border-radius:14px;color:#120c00;font-size:15px;font-weight:800;padding:15px;cursor:pointer;font-family:var(--ff);box-shadow:0 8px 26px rgba(201,168,76,.3);transition:transform .15s;position:relative;overflow:hidden}
+.sticky-save button::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.12),transparent 50%)}
+.sticky-save button:active{transform:scale(.97)}
 .er-sav{background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.15);border-radius:12px;padding:10px 9px;margin-top:6px;display:grid;grid-template-columns:18px 1fr 88px;gap:9px;align-items:center}
 .er-sav .er-inp{border-color:rgba(16,185,129,.25);color:var(--green)}
 .er-sav .er-inp:focus{border-color:rgba(16,185,129,.5);box-shadow:0 0 0 3px rgba(16,185,129,.08)}
@@ -430,7 +434,11 @@ body{padding-top:var(--safe-t)}
           <input class="er-inp" type="number" inputmode="decimal" id="iSavEntry" placeholder="0" oninput="rc()" style="border-color:rgba(16,185,129,.25);color:var(--green)">
         </div>
       </div>
-      <button class="btn-save" onclick="saveMon()">💾 Save <span id="sbMon"></span> Data</button>
+      <!-- STICKY SAVE BUTTON -->
+      <div style="height:80px"></div><!-- spacer so savings row not hidden -->
+      <div class="sticky-save">
+        <button onclick="saveMon()">💾 Save <span id="sbMon"></span> Data</button>
+      </div>
       <div style="display:flex;align-items:center;justify-content:center;gap:7px;padding:10px 0 4px">
         <div style="width:6px;height:6px;border-radius:50%;background:var(--gold2);box-shadow:0 0 7px var(--gold2);animation:pulse 2s ease-in-out infinite"></div>
         <span id="asInd" style="font-size:9.5px;font-weight:700;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase">Savings saves on 💾 button</span>
